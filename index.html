@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dhanvanth Kumar Gude — Agentic AI Security &amp; Privacy Research</title>
+<meta name="description" content="Research portfolio of Dhanvanth Kumar Gude: privacy-preserving machine learning, differential privacy, zero-knowledge attestation and security for agentic AI systems." />
+<meta name="author" content="Dhanvanth Kumar Gude" />
+
+<!-- Open Graph (used when the link is shared) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Dhanvanth Kumar Gude — Agentic AI Security &amp; Privacy Research" />
+<meta property="og:description" content="Privacy-preserving machine learning, differential privacy and zero-knowledge attestation for agentic AI systems." />
+<meta property="og:image" content="assets/img/profile.jpg" />
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+
+<!-- Set the theme before first paint so the page never flashes the wrong colours -->
+<script>
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  document.documentElement.setAttribute('data-theme', saved || (prefersLight ? 'light' : 'dark'));
+})();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-rail"><span id="scrollProgress"></span></div>
+
+<!-- ============================ ICON SPRITE ============================ -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-agent" viewBox="0 0 24 24">
+    <path d="M12 2.4 20 7v10l-8 4.6L4 17V7l8-4.6Z"/>
+    <circle cx="12" cy="12" r="2.4"/>
+    <path d="M12 9.6V7M12 17v-2.6M14.1 13.2l2.3 1.3M7.6 9.5l2.3 1.3M9.9 13.2l-2.3 1.3M16.4 9.5l-2.3 1.3"/>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24">
+    <path d="M12 2.6 4.8 5.4v6c0 4.4 3 8.1 7.2 9.9 4.2-1.8 7.2-5.5 7.2-9.9v-6L12 2.6Z"/>
+    <rect x="9.2" y="11.2" width="5.6" height="4.6" rx="1.1"/>
+    <path d="M10.4 11.2v-1.3a1.6 1.6 0 0 1 3.2 0v1.3"/>
+  </symbol>
+  <symbol id="i-noise" viewBox="0 0 24 24">
+    <path d="M2.5 14.5h2l1.6-6 2 10.5 2.2-15L12.6 19l2-9.5 1.5 5h5.4"/>
+  </symbol>
+  <symbol id="i-llm" viewBox="0 0 24 24">
+    <path d="M8.4 4.5 4 12l4.4 7.5M15.6 4.5 20 12l-4.4 7.5"/>
+    <rect x="9.6" y="10.4" width="4.8" height="4" rx="1"/>
+    <path d="M10.7 10.4V9.3a1.3 1.3 0 0 1 2.6 0v1.1"/>
+  </symbol>
+  <symbol id="i-safety" viewBox="0 0 24 24">
+    <path d="M12 3.2 5 6v5.5c0 4 2.9 7.7 7 9.3 4.1-1.6 7-5.3 7-9.3V6l-7-2.8Z"/>
+    <path d="M8.9 12.1l2.1 2.1 4.1-4.3"/>
+  </symbol>
+  <symbol id="i-mesh" viewBox="0 0 24 24">
+    <circle cx="12" cy="4.6" r="2.1"/><circle cx="4.6" cy="17" r="2.1"/><circle cx="19.4" cy="17" r="2.1"/>
+    <path d="M10.6 6.4 6.1 15M13.4 6.4 17.9 15M6.7 17h10.6"/>
+  </symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.8 7 8.2 6 8.2-6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.4 13.6a3.6 3.6 0 0 0 5.1 0l3-3a3.6 3.6 0 0 0-5.1-5.1l-1.4 1.4"/><path d="M13.6 10.4a3.6 3.6 0 0 0-5.1 0l-3 3a3.6 3.6 0 0 0 5.1 5.1l1.4-1.4"/></symbol>
+  <symbol id="i-scholar" viewBox="0 0 24 24"><path d="M12 4 2.6 9 12 14l9.4-5L12 4Z"/><path d="M6.4 11.2V16c0 1.6 2.5 2.9 5.6 2.9s5.6-1.3 5.6-2.9v-4.8"/></symbol>
+  <symbol id="i-orcid" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9.6v6M9 7.1v.1M12.6 15.6V9.6h1.8a3 3 0 0 1 0 6h-1.8Z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.6v11M7.8 10.6 12 14.8l4.2-4.2M4.6 18.2v1.4a.8.8 0 0 0 .8.8h13.2a.8.8 0 0 0 .8-.8v-1.4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.2M12 19.2v2.2M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.4 19.6 6 18M18 6l1.6-1.6"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.4A8.4 8.4 0 0 1 9.6 4a8.4 8.4 0 1 0 10.4 10.4Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3.2H6.8a1.6 1.6 0 0 0-1.6 1.6v14.4a1.6 1.6 0 0 0 1.6 1.6h10.4a1.6 1.6 0 0 0 1.6-1.6V8l-4.8-4.8Z"/><path d="M14 3.2V8h4.8M8.6 12.6h6.8M8.6 16h4.6"/></symbol>
+</svg>
+
+<!-- ============================ HEADER ============================ -->
+<header class="nav" id="nav">
+  <a class="mark" href="#top">
+    <span class="mark-glyph"><svg><use href="#i-agent"/></svg></span>
+    <span class="mark-text">D. K. Gude</span>
+  </a>
+
+  <nav class="nav-links" id="navLinks" aria-label="Section navigation">
+    <a href="#focus">Focus</a>
+    <a href="#lab">Lab</a>
+    <a href="#work">Publications</a>
+    <a href="#path">Experience</a>
+    <a href="#toolkit">Toolkit</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="ico-moon"><use href="#i-moon"/></svg>
+      <svg class="ico-sun"><use href="#i-sun"/></svg>
+    </button>
+    <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <canvas class="lattice" id="lattice" aria-hidden="true"></canvas>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="status"><span class="pulse"></span>Assistant Project Engineer · IIT Guwahati · MeitY-supported research</p>
+
+      <h1 class="display">
+        Making agentic AI<br />
+        <span class="resolve" data-final="provably private">provably private</span>
+      </h1>
+
+      <p class="lede">
+        I design cryptographic and statistical machinery that lets autonomous agents prove they behaved
+        correctly without ever revealing the data, the model, or the identity behind the action.
+        My work sits at the intersection of privacy-preserving machine learning, differential privacy
+        and zero-knowledge attestation.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="assets/docs/CV_Dhanvanth_Kumar_Gude.pdf" download>
+          <svg><use href="#i-download"/></svg> Download CV
+        </a>
+        <a class="btn btn-ghost" href="#work">
+          Read the publications <svg><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <dl class="stats">
+        <div><dt>13</dt><dd>Publications &amp; records</dd></div>
+        <div><dt>08</dt><dd>As first author</dd></div>
+        <div><dt>01</dt><dd>Patent published</dd></div>
+        <div><dt>Q1</dt><dd>Two under review</dd></div>
+      </dl>
+    </div>
+
+    <figure class="portrait">
+      <div class="portrait-frame">
+        <!-- REPLACE: drop your photo at assets/img/profile.jpg and it appears automatically -->
+        <img src="assets/img/profile.jpg" alt="Portrait of Dhanvanth Kumar Gude"
+             onerror="this.onerror=null;this.src='assets/img/profile-placeholder.jpg';this.classList.add('is-placeholder');" />
+        <span class="tick tl"></span><span class="tick tr"></span>
+        <span class="tick bl"></span><span class="tick br"></span>
+      </div>
+      <figcaption>
+        <span class="verified"><svg><use href="#i-safety"/></svg></span>
+        <span>
+          <b>Dhanvanth Kumar Gude</b>
+          <em>Vijayawada, Andhra Pradesh, India</em>
+        </span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ FOCUS ============================ -->
+<section class="section" id="focus">
+  <p class="eyebrow"><i></i>research.focus</p>
+  <h2 class="h2">Five questions I keep returning to</h2>
+  <p class="section-lede">
+    Autonomous agents now read private data, call external tools and negotiate with other agents.
+    Every one of those steps leaks something. These are the five surfaces I work on.
+  </p>
+
+  <div class="grid-cards">
+    <article class="card reveal">
+      <span class="card-ico"><svg><use href="#i-agent"/></svg></span>
+      <h3>Agentic AI</h3>
+      <p>Planning, memory and tool use turn a model into an actor. I study what an actor discloses that a single prompt never would.</p>
+    </article>
+    <article class="card reveal">
+      <span class="card-ico"><svg><use href="#i-shield"/></svg></span>
+      <h3>Privacy-preserving ML</h3>
+      <p>Federated and secure-aggregation pipelines that keep raw records on the device while the shared model still learns.</p>
+    </article>
+    <article class="card reveal">
+      <span class="card-ico"><svg><use href="#i-noise"/></svg></span>
+      <h3>Differential privacy</h3>
+      <p>Calibrated noise, tight accounting, and the honest question underneath all of it — how much utility did the guarantee cost?</p>
+    </article>
+    <article class="card reveal">
+      <span class="card-ico"><svg><use href="#i-llm"/></svg></span>
+      <h3>LLM security</h3>
+      <p>Prompt-mediated attacks, memory poisoning and extraction from models that were never meant to memorise anything.</p>
+    </article>
+    <article class="card reveal">
+      <span class="card-ico"><svg><use href="#i-safety"/></svg></span>
+      <h3>AI safety &amp; trust</h3>
+      <p>Attestation and audit trails that make an agent's behaviour checkable after the fact, by someone who does not trust it.</p>
+    </article>
+    <article class="card card-quiet reveal">
+      <span class="card-ico"><svg><use href="#i-mesh"/></svg></span>
+      <h3>Where it meets</h3>
+      <p>The doctoral direction I am pursuing: a single leakage model that spans the model, the memory, the tool call and the agent-to-agent channel.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ LAB / SIGNATURE ============================ -->
+<section class="section section-lab" id="lab">
+  <p class="eyebrow"><i></i>lab.demonstration</p>
+  <h2 class="h2">The privacy-utility dial, live</h2>
+  <p class="section-lede">
+    Differential privacy is a budget, not a switch. Move ε and watch the same query answers blur.
+    Noise is drawn from a Laplace distribution with scale b&nbsp;=&nbsp;Δf&nbsp;/&nbsp;ε, sensitivity Δf&nbsp;=&nbsp;1.
+  </p>
+
+  <div class="console reveal">
+    <div class="console-head">
+      <span class="chip chip-live"><span class="pulse"></span>running</span>
+      <span class="mono">query: agent_tool_calls[ ] · records = 40</span>
+    </div>
+
+    <div class="bars" id="bars" aria-hidden="true"></div>
+
+    <div class="console-controls">
+      <label class="slider-wrap" for="eps">
+        <span class="mono">privacy budget ε</span>
+        <input type="range" id="eps" min="0.05" max="5" step="0.05" value="0.6"
+               aria-describedby="epsReadout" />
+      </label>
+
+      <div class="readouts" id="epsReadout">
+        <div class="readout"><span class="mono">ε</span><b id="rEps">0.60</b></div>
+        <div class="readout"><span class="mono">noise scale b</span><b id="rB">1.67</b></div>
+        <div class="readout"><span class="mono">mean abs. error</span><b id="rErr">1.67</b></div>
+        <div class="readout"><span class="mono">guarantee</span><b id="rLabel" class="verdict">strong</b></div>
+      </div>
+    </div>
+
+    <div class="meter">
+      <div class="meter-row">
+        <span class="mono">re-identification advantage</span>
+        <span class="mono" id="rRisk">14%</span>
+      </div>
+      <div class="meter-track"><span id="riskBar"></span></div>
+    </div>
+
+    <p class="console-note">
+      Low ε protects the individual and destroys the signal. High ε recovers the signal and exposes the
+      individual. Choosing the point between them, for an agent that queries continuously, is the
+      accounting problem I want to solve.
+    </p>
+  </div>
+
+<!-- ============================ PUBLICATIONS ============================ -->
+<section class="section" id="work">
+  <p class="eyebrow"><i></i>record.publications</p>
+  <h2 class="h2">Published work</h2>
+  <p class="section-lede">
+    Thirteen records across patents, journals, conferences and a book chapter — eight of them as first author.
+    Filter by type.
+  </p>
+
+  <div class="filters" role="group" aria-label="Filter publications by type">
+    <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">All <span>13</span></button>
+    <button class="filter" type="button" data-filter="patent" aria-pressed="false">Patent <span>1</span></button>
+    <button class="filter" type="button" data-filter="journal" aria-pressed="false">Journal <span>2</span></button>
+    <button class="filter" type="button" data-filter="review" aria-pressed="false">Under review <span>2</span></button>
+    <button class="filter" type="button" data-filter="conference" aria-pressed="false">Conference <span>7</span></button>
+    <button class="filter" type="button" data-filter="chapter" aria-pressed="false">Book chapter <span>1</span></button>
+  </div>
+
+  <ol class="pubs" id="pubs">
+
+    <li class="pub reveal" data-type="patent">
+      <div class="pub-meta">
+        <span class="tag tag-patent">Patent</span>
+        <span class="mono">2026</span>
+      </div>
+      <div class="pub-body">
+        <h3>A Method and a System for Privacy-Preserving Authentication and Attestation in Decentralized IoT Swarms</h3>
+        <p class="authors">Satyajit Das, <b>Dhanvanth Kumar Gude</b>, Tamarapalli Venkatesh, John Jose, Ruchika Gupta</p>
+        <p class="venue">Indian Patent Application No. 202631037175 · Published 05 June 2026 · Applicant: IIT Guwahati</p>
+        <div class="chips">
+          <span class="chip">Co-inventor</span>
+          <span class="chip">G06F 21/57</span>
+          <span class="chip">H04L 9/32</span>
+          <span class="chip">H04L 9/08</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="journal">
+      <div class="pub-meta">
+        <span class="tag tag-journal">Journal</span>
+        <span class="mono">2026</span>
+      </div>
+      <div class="pub-body">
+        <h3>IntelliGuard: An Energy-Efficient and Secure Fog-Integrated UAV Surveillance Framework Enhanced by DPAFIO</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Mohit Lalit, Anurag Jain, Bhupesh Dewangan</p>
+        <p class="venue">Discover Computing, Springer Nature — Topical Collection: Augmenting Edge AI with Collaborative Edge Computing</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <span class="chip">Q2</span><span class="chip">IF 1.9</span><span class="chip">SCIE</span>
+          <a class="chip chip-link" href="https://doi.org/10.1007/s10791-026-10304-9" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="journal">
+      <div class="pub-meta">
+        <span class="tag tag-journal">Journal</span>
+        <span class="mono">2024</span>
+      </div>
+      <div class="pub-body">
+        <h3>Transforming Urban Sanitation: Enhancing Sustainability through Machine Learning-Driven Waste Processing</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Harshavardan Bandari, Anjani Kumar Reddy Challa, Sabiha Tasneem, Zarin Tasneem, Shyama Barna Bhattacharjee, Mohit Lalit, Miguel Angel López Flores, Nitin Goyal</p>
+        <p class="venue">Sustainability, MDPI</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <span class="chip">Q1</span><span class="chip">IF 4.1</span><span class="chip">SCIE</span>
+          <a class="chip chip-link" href="https://doi.org/10.3390/su16177626" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="review">
+      <div class="pub-meta">
+        <span class="tag tag-review">Under review</span>
+        <span class="mono">2026</span>
+      </div>
+      <div class="pub-body">
+        <h3>A Resilient and Latency-Aware Fog Node Deployment Framework Using Voronoi-Guided Oceanic Swarm Optimization for Large-Scale IoT-Edge Networks</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Adil Hussain Seh, Khaled Alomar, Eesa Alsolami, Mohit Lalit, Kemal Polat, Anurag Jain</p>
+        <p class="venue">Journal of Network and Computer Applications, Elsevier · Submitted July 2026 · JNCA-D-26-0299</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <span class="chip">Q1</span><span class="chip">IF 7.7</span><span class="chip">SCIE</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="review">
+      <div class="pub-meta">
+        <span class="tag tag-review">Under review</span>
+        <span class="mono">2026</span>
+      </div>
+      <div class="pub-body">
+        <h3>GASE: A Graph-Augmented Stacked Ensemble Framework for Suspicious User Threat Detection in Electronic Health Record Systems</h3>
+        <p class="authors">Adil Hussain Seh, <b>Dhanvanth Kumar Gude</b>, Will Hurst</p>
+        <p class="venue">Array, Elsevier · ARRAY-D-26-02459</p>
+        <div class="chips">
+          <span class="chip">Co-author</span>
+          <span class="chip">Q1</span><span class="chip">IF 5.3</span><span class="chip">ESCI</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2026</span>
+      </div>
+      <div class="pub-body">
+        <h3>An Efficient Privacy-Aware Framework for Traffic Violation Detection Using Federated Learning</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Mohit Lalit, Nitin Goyal</p>
+        <p class="venue">1st International Conference on Advancing Sustainable Solutions through Technologies (ICASST) 2026 · IEEE</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <a class="chip chip-link" href="https://ieeexplore.ieee.org/document/11484514" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2026</span>
+      </div>
+      <div class="pub-body">
+        <h3>FA-CFL: A Fog-Aware Capacitated Facility Location Framework for Scalable Fog Node Deployment</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Anjani Kumar Reddy Challa, Harshavardan Bandari, Siddharth Kumar</p>
+        <p class="venue">3rd International Conference on Recent Advances in Artificial Intelligence, Computer Vision &amp; Smart Systems 2026 · AIP Conference Proceedings</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <span class="chip chip-ok">Accepted &amp; presented</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2025</span>
+      </div>
+      <div class="pub-body">
+        <h3>Privacy-Preserving Dynamic Pricing for EV Charging via Fog-Enabled Federated Learning</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Mohit Lalit, Nitin Goyal</p>
+        <p class="venue">7th International Conference on Computing, Communication &amp; Automation (ICCCA) 2025 · IEEE</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <a class="chip chip-link" href="https://ieeexplore.ieee.org/document/11325163" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2025</span>
+      </div>
+      <div class="pub-body">
+        <h3>Federated Learning Enhanced IoT-Based Adaptive Lighting System with Pedestrian Detection</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Amandeep Singh Arora, Gyanendra Kumar Shukla, Mohit Lalit, Amit Sandhu</p>
+        <p class="venue">7th International Symposium on Advanced Electrical and Communication Technologies (ISAECT) 2025 · IEEE</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <a class="chip chip-link" href="https://ieeexplore.ieee.org/document/11318668" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2025</span>
+      </div>
+      <div class="pub-body">
+        <h3>A Secure Aggregation-Based Comparative Analysis of Federated Learning Algorithms on Human Activity Recognition Data</h3>
+        <p class="authors">Harshavardan Bandari, <b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Anjani Kumar Reddy Challa, Siddharth Kumar</p>
+        <p class="venue">2nd Global AI Summit — International Conference on Artificial Intelligence and Emerging Technology 2025 · IEEE</p>
+        <div class="chips">
+          <span class="chip">Co-author</span>
+          <a class="chip chip-link" href="https://ieeexplore.ieee.org/document/11411581" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2025</span>
+      </div>
+      <div class="pub-body">
+        <h3>Human Activity Recognition Reimagined: The CGRNHAR Self-Supervised Approach</h3>
+        <p class="authors">Anjani Kumar Reddy Challa, Vamshi Krishna Raavi, Harshavardan Bandari, <b>Dhanvanth Kumar Gude</b>, Siddharth Kumar</p>
+        <p class="venue">2nd Global AI Summit — International Conference on Artificial Intelligence and Emerging Technology 2025 · IEEE</p>
+        <div class="chips">
+          <span class="chip">Co-author</span>
+          <a class="chip chip-link" href="https://ieeexplore.ieee.org/document/11411187" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="conference">
+      <div class="pub-meta">
+        <span class="tag tag-conf">Conference</span>
+        <span class="mono">2025</span>
+      </div>
+      <div class="pub-body">
+        <h3>Design and Simulation of an IoT-Based Adaptive Lighting System with Pedestrian Detection</h3>
+        <p class="authors">Vamshi Krishna Raavi, <b>Dhanvanth Kumar Gude</b>, Davinder Singh, Mohit Lalit, Amit Sandhu, Shailja Gera</p>
+        <p class="venue">International Conference on Innovations and Emerging Technologies in AI &amp; Communication Systems (IETACS) 2025 · IEEE</p>
+        <div class="chips">
+          <span class="chip">Co-author</span>
+          <a class="chip chip-link" href="https://ieeexplore.ieee.org/document/11385446" target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="pub reveal" data-type="chapter">
+      <div class="pub-meta">
+        <span class="tag tag-chapter">Book chapter</span>
+        <span class="mono">—</span>
+      </div>
+      <div class="pub-body">
+        <h3>Applications of Deep Generative AI in Neuroprosthetics</h3>
+        <p class="authors"><b>Dhanvanth Kumar Gude</b>, Vamshi Krishna Raavi, Mohit Lalit, Sakshi Mehta, Mohit Angurala</p>
+        <p class="venue">Neuroprosthetics Revolution: Transforming Lives with Deep Generative AI · Apple Academic Press</p>
+        <div class="chips">
+          <span class="chip chip-lead">First author</span>
+          <a class="chip chip-link" href="https://appleacademicpress.com/neuroprosthetics-revolution-transforming-lives-with-deep-generative-ai/9781779646323 " target="_blank" rel="noopener"><svg><use href="#i-link"/></svg>DOI</a>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <p class="empty" id="pubsEmpty" hidden>No records of that type.</p>
+</section>
+
+<!-- ============================ EXPERIENCE ============================ -->
+<section class="section" id="path">
+  <p class="eyebrow"><i></i>record.experience</p>
+  <h2 class="h2">Research and teaching</h2>
+
+  <ol class="timeline">
+    <li class="tl-item reveal">
+      <div class="tl-when"><span class="mono">Jun 2026 — Present</span><span class="tl-kind">Research</span></div>
+      <div class="tl-what">
+        <h3>Assistant Project Engineer <em>· IIT Guwahati</em></h3>
+        <p>Supervised by Dr. Tamarapalli Venkatesh and Dr. Satyajit Das, Department of Computer Science and Engineering. Research supported by the Ministry of Electronics and Information Technology, Government of India.</p>
+        <ul class="ticks">
+          <li>Designed PRISM, a post-quantum privacy-preserving authentication and attestation protocol for resource-constrained IoT devices, extending ZKSWARMv1.</li>
+          <li>Building an anomaly-detection framework for multi-hop protocol laundering attacks using Cross-Protocol Temporal Coalition Graphs.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="tl-item reveal">
+      <div class="tl-when"><span class="mono">Jul 2026 — Present</span><span class="tl-kind tl-teach">Teaching</span></div>
+      <div class="tl-what">
+        <h3>Teaching Assistant <em>· IIT Guwahati</em></h3>
+        <p>CS3105 Operating Systems and CS3105L Operating Systems Laboratory, Odd Semester 2026.</p>
+        <ul class="ticks">
+          <li>Tutorials, laboratory sessions, assignment evaluation and academic support for undergraduates.</li>
+          <li>Guidance on Linux programming, process and memory management, synchronisation and file systems.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="tl-item reveal">
+      <div class="tl-when"><span class="mono">Sep 2025 — May 2026</span><span class="tl-kind">Research</span></div>
+      <div class="tl-what">
+        <h3>Research Intern <em>· IIT Guwahati</em></h3>
+        <p>Undergraduate research on privacy-preserving authentication and attestation for IoT edge networks using zero-knowledge proofs.</p>
+        <ul class="ticks">
+          <li>Designed and implemented ZKSWARMv1, integrating firmware, sensor, range and ring proofs within a 128 KB footprint on ESP32.</li>
+          <li>Work filed and published as an Indian Patent (Application No. 202631037175).</li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================ CREDENTIALS ============================ -->
+<section class="section" id="credentials">
+  <p class="eyebrow"><i></i>record.credentials</p>
+  <h2 class="h2">Education, awards and language</h2>
+
+  <div class="cred-grid">
+    <article class="panel reveal">
+      <span class="panel-ico"><svg><use href="#i-scholar"/></svg></span>
+      <h3>B.E. (Hons.) Computer Science &amp; Engineering</h3>
+      <p class="panel-sub">Chandigarh University, India · Aug 2022 – Jun 2026</p>
+      <p>Specialisation in Artificial Intelligence and Machine Learning.</p>
+      <dl class="kv">
+        <div><dt>GPA</dt><dd>8.62 / 10.00</dd></div>
+        <div><dt>Capstone Project I</dt><dd>90%</dd></div>
+        <div><dt>Research internship</dt><dd>100%</dd></div>
+      </dl>
+      <p class="panel-note">Coursework: Machine Learning · Deep Learning · Artificial Intelligence · Natural Language Processing · Probability and Statistics</p>
+    </article>
+
+    <article class="panel reveal">
+      <span class="panel-ico"><svg><use href="#i-safety"/></svg></span>
+      <h3>Honours &amp; awards</h3>
+      <ul class="ticks ticks-lg">
+        <li><b>IEEE Luminary of Discovery — Best Research</b><br />IEEE Chandigarh University Student Branch, CUSB Excellence Awards 2.0, 2026</li>
+        <li><b>Alstom Scholarship (2×)</b><br />Awarded for academic excellence and research potential</li>
+      </ul>
+    </article>
+
+    <article class="panel reveal">
+      <span class="panel-ico"><svg><use href="#i-doc"/></svg></span>
+      <h3>IELTS Academic</h3>
+      <p class="panel-sub">Overall band 7.5</p>
+      <div class="bands">
+        <div class="band"><span>Listening</span><span class="band-track"><i style="--v:88.9%"></i></span><b>8.0</b></div>
+        <div class="band"><span>Reading</span><span class="band-track"><i style="--v:88.9%"></i></span><b>8.0</b></div>
+        <div class="band"><span>Writing</span><span class="band-track"><i style="--v:77.8%"></i></span><b>7.0</b></div>
+        <div class="band"><span>Speaking</span><span class="band-track"><i style="--v:72.2%"></i></span><b>6.5</b></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ TOOLKIT ============================ -->
+<section class="section" id="toolkit">
+  <p class="eyebrow"><i></i>record.toolkit</p>
+  <h2 class="h2">What I build with</h2>
+
+  <div class="tool-grid">
+    <div class="tool reveal">
+      <h3><svg><use href="#i-llm"/></svg> Programming</h3>
+      <ul class="tags"><li>Python</li><li>C++</li><li>SQL</li></ul>
+    </div>
+    <div class="tool reveal">
+      <h3><svg><use href="#i-agent"/></svg> Artificial intelligence</h3>
+      <ul class="tags"><li>Machine Learning</li><li>Deep Learning</li><li>Large Language Models</li><li>NLP</li></ul>
+    </div>
+    <div class="tool reveal">
+      <h3><svg><use href="#i-shield"/></svg> Privacy &amp; AI security</h3>
+      <ul class="tags"><li>Privacy-Preserving ML</li><li>Differential Privacy</li><li>AI Security</li><li>Information Leakage Analysis</li><li>Privacy-Aware AI Systems</li></ul>
+    </div>
+    <div class="tool reveal">
+      <h3><svg><use href="#i-mesh"/></svg> Agentic &amp; intelligent systems</h3>
+      <ul class="tags"><li>Agentic AI</li><li>Multi-Agent Systems</li><li>Memory-Augmented AI</li><li>AI Reasoning</li><li>AI Safety</li></ul>
+    </div>
+    <div class="tool reveal">
+      <h3><svg><use href="#i-noise"/></svg> Frameworks &amp; tools</h3>
+      <ul class="tags"><li>PyTorch</li><li>TensorFlow</li><li>Hugging Face Transformers</li><li>Scikit-learn</li><li>Linux</li><li>Git</li></ul>
+    </div>
+    <div class="tool reveal">
+      <h3><svg><use href="#i-doc"/></svg> Research practice</h3>
+      <ul class="tags"><li>Experimental Design</li><li>Literature Review</li><li>Statistical Analysis</li><li>Technical Writing</li><li>Problem Formulation</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section section-contact" id="contact">
+  <div class="contact-inner">
+    <p class="eyebrow"><i></i>channel.open</p>
+    <h2 class="h2">Let's talk about agentic privacy</h2>
+    <p class="section-lede">
+      I am looking for doctoral supervision in privacy and security for agentic AI systems.
+      Reach me directly, or read the work first. Both are fine.
+    </p>
+
+    <div class="contact-links">
+      <!-- TODO: replace with your real address and profile URLs -->
+      <a class="clink" href="mailto:dhanvanthkumarg05@example.com">
+        <svg><use href="#i-mail"/></svg>
+        <span><b>Email</b><em>dhanvanthkumarg05@example.com</em></span>
+      </a>
+      <a class="clink" href="https://www.linkedin.com/in/gudedk05" target="_blank" rel="noopener">
+        <svg><use href="#i-link"/></svg>
+        <span><b>LinkedIn</b><em>linkedin.com/in/gudedk05</em></span>
+      </a>
+      <a class="clink" href="https://scholar.google.com/citations?hl=en&authuser=2&user=oovz0KQAAAAJ" target="_blank" rel="noopener">
+        <svg><use href="#i-scholar"/></svg>
+        <span><b>Google Scholar</b><em>Citations profile</em></span>
+      </a>
+      <a class="clink" href="https://orcid.org/0009-0007-2148-1981" target="_blank" rel="noopener">
+        <svg><use href="#i-orcid"/></svg>
+        <span><b>ORCID</b><em>0009-0007-2148-1981</em></span>
+      </a>
+    </div>
+
+    <a class="btn btn-primary btn-lg" href="assets/docs/CV_Dhanvanth_Kumar_Gude.pdf" download>
+      <svg><use href="#i-download"/></svg> Download full CV
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span class="mono">© <span id="year">2026</span> Dhanvanth Kumar Gude</span>
+  <span class="mono footer-note">Built as a static site — no trackers, no analytics, no cookies.</span>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
